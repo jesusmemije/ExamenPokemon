@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.memije.examenpokemon">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
+        android:name=".ExamenPokemonApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +17,7 @@
         android:theme="@style/Theme.ExamenPokemon"
         tools:targetApi="31">
         <activity
-            android:name=".home.ui.MainActivity"
+            android:name="com.memije.examenpokemon.ui.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
