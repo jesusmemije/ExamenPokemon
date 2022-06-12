@@ -1,23 +1,25 @@
 package com.memije.examenpokemon.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.memije.examenpokemon.databinding.ActivityMainBinding
+import com.memije.examenpokemon.R
 import com.memije.examenpokemon.adapter.PokemonAdapter
+import com.memije.examenpokemon.databinding.ActivityMainBinding
 import com.memije.examenpokemon.ui.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PokemonAdapter.OnPokemonClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
     private val pokemonViewModel: PokemonViewModel by viewModels()
 
-    private val adapter = PokemonAdapter()
+    private val adapter = PokemonAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,5 +39,19 @@ class MainActivity : AppCompatActivity() {
         pokemonViewModel.isLoading.observe(this) {
             binding.pbLoading.isVisible = it
         }
+    }
+
+    override fun onItemClick(name: String) {
+        val bundle = Bundle()
+        bundle.putString("pokemon", name)
+
+        val transaction = supportFragmentManager.beginTransaction()
+
+        val fragment = InfoSpeciesFragment()
+        fragment.arguments = bundle
+
+        transaction.replace(R.id.cl_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

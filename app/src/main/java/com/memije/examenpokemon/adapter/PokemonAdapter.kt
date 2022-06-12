@@ -1,12 +1,20 @@
 package com.memije.examenpokemon.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.memije.examenpokemon.R
 import com.memije.examenpokemon.databinding.PokemonItemBinding
 import com.memije.examenpokemon.domain.model.Pokemon
+import com.memije.examenpokemon.ui.view.InfoSpeciesFragment
 
-class PokemonAdapter : RecyclerView.Adapter<MainViewHolder>() {
+class PokemonAdapter(private val itemClickListener: OnPokemonClickListener) :
+    RecyclerView.Adapter<MainViewHolder>() {
+
+    interface OnPokemonClickListener {
+        fun onItemClick(name: String)
+    }
 
     private var pokemons = mutableListOf<Pokemon>()
 
@@ -25,6 +33,10 @@ class PokemonAdapter : RecyclerView.Adapter<MainViewHolder>() {
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val pokemon = pokemons[position]
         holder.binding.tvName.text = pokemon.name
+
+        holder.binding.cvPokemon.setOnClickListener {
+            itemClickListener.onItemClick(pokemon.name)
+        }
     }
 
     override fun getItemCount(): Int {

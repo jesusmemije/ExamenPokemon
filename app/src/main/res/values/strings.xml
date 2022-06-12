@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ExamenPokemon</string>
     <string name="todo">TODO</string>
+    <string name="poke_info">Poke Info</string>
+    <string name="linea_evolutiva">Línea Evolutiva</string>
+    <string name="habilidades">Habilidades</string>
 </resources>
