@@ -1,7 +1,9 @@
 package com.memije.examenpokemon.data
 
+import android.util.Log
 import com.memije.examenpokemon.data.database.dao.PokemonDao
 import com.memije.examenpokemon.data.database.entities.PokemonEntity
+import com.memije.examenpokemon.data.model.InfoPokemonModel
 import com.memije.examenpokemon.data.model.PokemonModel
 import com.memije.examenpokemon.data.network.PokemonService
 import com.memije.examenpokemon.domain.model.Pokemon
@@ -29,5 +31,9 @@ class PokemonRepository @Inject constructor(
 
     suspend fun clearPokemons() {
         pokemonDao.deleteAll()
+    }
+
+    suspend fun getPokemonFromApi(name: String): InfoPokemonModel {
+        return apiService.getPokemon(name)
     }
 }

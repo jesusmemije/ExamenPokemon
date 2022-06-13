@@ -1,13 +1,10 @@
 package com.memije.examenpokemon.adapter
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.memije.examenpokemon.R
 import com.memije.examenpokemon.databinding.PokemonItemBinding
 import com.memije.examenpokemon.domain.model.Pokemon
-import com.memije.examenpokemon.ui.view.InfoSpeciesFragment
 
 class PokemonAdapter(private val itemClickListener: OnPokemonClickListener) :
     RecyclerView.Adapter<MainViewHolder>() {

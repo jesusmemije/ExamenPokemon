@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), PokemonAdapter.OnPokemonClickListener 
 
         val transaction = supportFragmentManager.beginTransaction()
 
-        val fragment = InfoSpeciesFragment()
+        val fragment = InfoPokemonFragment()
         fragment.arguments = bundle
 
         transaction.replace(R.id.cl_container, fragment)
