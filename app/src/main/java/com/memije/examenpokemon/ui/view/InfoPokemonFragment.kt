@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.memije.examenpokemon.R
 import com.memije.examenpokemon.databinding.FragmentInfoPokemonBinding
 import com.memije.examenpokemon.ui.viewmodel.InfoPokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,16 +17,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class InfoPokemonFragment : Fragment() {
 
     private lateinit var _binding: FragmentInfoPokemonBinding
+    private val binding get() = _binding
 
-    private var pokemon: String? = null
+    private lateinit var pokemonName: String
 
     private val infoPokemonViewModel: InfoPokemonViewModel by viewModels()
 
-    private val binding get() = _binding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pokemon = arguments?.getString("pokemon")
+        pokemonName = arguments?.getString("pokemon").toString()
     }
 
     override fun onCreateView(
@@ -36,9 +36,9 @@ class InfoPokemonFragment : Fragment() {
         _binding = FragmentInfoPokemonBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.tvName.text = pokemon
+        binding.tvName.text = pokemonName
 
-        pokemon?.let { infoPokemonViewModel.onCreate(it) }
+        infoPokemonViewModel.onCreate(pokemonName)
 
         var eggs = ""
         infoPokemonViewModel.pokemonInfo.observe(viewLifecycleOwner) { infoPokemonModel ->
@@ -62,6 +62,24 @@ class InfoPokemonFragment : Fragment() {
             binding.pbLoading.isVisible = it
         }
 
+        binding.btnAbilities.setOnClickListener {
+            loadFragment(AbilitiesFragment(), pokemonName)
+        }
+
         return root
+    }
+
+    private fun loadFragment(fragment: Fragment, pokemonName: String) {
+
+        val bundle = Bundle()
+        bundle.putString("pokemon", pokemonName)
+
+        binding.btnAbilities.visibility = View.GONE
+        binding.btnEvolutionaryLine.visibility = View.GONE
+
+        fragment.arguments = bundle
+        val fragmentTransaction = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fragmentContainer, fragment)
+        fragmentTransaction?.commit()
     }
 }

@@ -1,6 +1,7 @@
 package com.memije.examenpokemon.data.network
 
 import android.util.Log
+import com.memije.examenpokemon.data.model.AbilityModel
 import com.memije.examenpokemon.data.model.InfoPokemonModel
 import com.memije.examenpokemon.data.model.PokemonModel
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,13 @@ class PokemonService @Inject constructor(private val api: PokemonApiClient) {
     suspend fun getPokemon(name: String): InfoPokemonModel {
         return withContext(Dispatchers.IO) {
             api.getPokemon(name)
+        }
+    }
+
+    suspend fun getAbility(name: String): List<AbilityModel>{
+        return withContext(Dispatchers.IO) {
+            val response = api.getAbility(name)
+            response.body()?.aList ?: emptyList()
         }
     }
 }

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
@@ -84,7 +85,7 @@
         app:layout_constraintVertical_bias="0.05"
         tools:text="Grupo de huevos" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEvolutionaryLine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -95,10 +96,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEggGroups"
-        app:layout_constraintVertical_bias="0.70" />
+        app:layout_constraintVertical_bias="0.70"
+        android:elevation="0dp"
+        app:elevation="0dp"/>
 
-    <Button
-        android:id="@+id/btnSkills"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAbilities"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"

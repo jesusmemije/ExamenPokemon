@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), PokemonAdapter.OnPokemonClickListener 
         val fragment = InfoPokemonFragment()
         fragment.arguments = bundle
 
-        transaction.replace(R.id.cl_container, fragment)
+        transaction.replace(R.id.activityContainer, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

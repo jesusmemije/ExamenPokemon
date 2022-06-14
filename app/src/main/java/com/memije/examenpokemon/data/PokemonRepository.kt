@@ -3,6 +3,7 @@ package com.memije.examenpokemon.data
 import android.util.Log
 import com.memije.examenpokemon.data.database.dao.PokemonDao
 import com.memije.examenpokemon.data.database.entities.PokemonEntity
+import com.memije.examenpokemon.data.model.AbilityModel
 import com.memije.examenpokemon.data.model.InfoPokemonModel
 import com.memije.examenpokemon.data.model.PokemonModel
 import com.memije.examenpokemon.data.network.PokemonService
@@ -35,5 +36,9 @@ class PokemonRepository @Inject constructor(
 
     suspend fun getPokemonFromApi(name: String): InfoPokemonModel {
         return apiService.getPokemon(name)
+    }
+
+    suspend fun getAbilityFromApi(name: String): List<AbilityModel> {
+        return apiService.getAbility(name)
     }
 }

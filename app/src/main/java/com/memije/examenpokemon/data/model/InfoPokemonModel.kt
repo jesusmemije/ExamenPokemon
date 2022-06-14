@@ -7,12 +7,14 @@ data class InfoPokemonModel(
     @SerializedName("capture_rate") val captureRate: Int,
     val color: Color,
     @SerializedName("egg_groups") val eggGroups: List<EggGroup>
-)
+) {
+    data class Color(
+        val name: String
+    )
 
-data class Color(
-    val name: String
-)
+    data class EggGroup(
+        val name: String
+    )
+}
 
-data class EggGroup(
-    val name: String
-)
+

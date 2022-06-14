@@ -1,6 +1,7 @@
 package com.memije.examenpokemon.data.network
 
 import com.memije.examenpokemon.data.model.InfoPokemonModel
+import com.memije.examenpokemon.data.model.response.AbilityResponse
 import com.memije.examenpokemon.data.model.response.PokemonResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,4 +13,7 @@ interface PokemonApiClient {
 
     @GET("pokemon-species/{name}")
     suspend fun getPokemon(@Path("name") name: String): InfoPokemonModel
+
+    @GET("pokemon/{name}")
+    suspend fun getAbility(@Path("name") name: String): Response<AbilityResponse>
 }

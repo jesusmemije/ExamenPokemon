@@ -4,4 +4,6 @@
     <string name="poke_info">Poke Info</string>
     <string name="linea_evolutiva">Línea Evolutiva</string>
     <string name="habilidades">Habilidades</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
